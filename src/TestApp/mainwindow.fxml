@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TestApp.Controller">
+  <tabs>
+    <Tab text="Logowanie">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="log_inButton" layoutX="386.0" layoutY="150.0" mnemonicParsing="false" onAction="#Log_in_Click" text="Log in" />
+                  <TextField fx:id="userLoginField" layoutX="104.0" layoutY="150.0" onKeyReleased="#handleKeyReleased" />
+                  <Label layoutX="113.0" layoutY="129.0" text="Username" />
+                  <Label layoutX="104.0" layoutY="206.0" text="Current User:" />
+                  <Label fx:id="currentUserLabel" layoutX="212.0" layoutY="206.0" />
+                  <Label fx:id="zalogowano_dodano" layoutX="104.0" layoutY="249.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab fx:id="tab1" text="Przeprowadz Test">
+         <content>
+            <StackPane>
+               <children>
+                  <GridPane fx:id="panenext" opacity="0.0" StackPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+
+                        <Label fx:id="QuestionLabel" wrapText="true" GridPane.columnSpan="2" />
+                        <VBox spacing="30.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="4">
+                           <children>
+                              <RadioButton fx:id="Answer1Button">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="toggle" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="Answer2Button" toggleGroup="$toggle" />
+                              <RadioButton fx:id="Answer3Button" toggleGroup="$toggle" />
+                              <RadioButton fx:id="Answer4Button" toggleGroup="$toggle" />
+                           </children>
+                           <padding>
+                              <Insets top="15.0" />
+                           </padding>
+                        </VBox>
+                        <HBox spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <Button fx:id="AcceptQuestionButton" mnemonicParsing="false" onAction="#AcceptQuestionButtonPressed" text="Zatwierdz Pytanie" />
+                              <Button fx:id="EndTestButton" mnemonicParsing="false" onAction="#EndTestButtonPressed" text="Zakoncz test" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <StackPane.margin>
+                        <Insets left="30.0" />
+                     </StackPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="paneprevious" alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#StartTestButtonPressed" text="Rozpocznij Test" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="150.0" />
+                           </GridPane.margin></Button>
+                        <ListView fx:id="testListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="0" GridPane.rowSpan="3" />
+                        <HBox spacing="15.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label text="Grupa:" />
+                              <Label fx:id="groupLabel" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="20.0" top="50.0" />
+                           </GridPane.margin>
+                        </HBox>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </GridPane>
+               </children>
+            </StackPane>
+         </content>
+    </Tab>
+      <Tab fx:id="tab2" text="Dodaj Test">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox spacing="30.0">
+                     <children>
+                        <Label text="Nazwa Testu">
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="TestNameTextField" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </HBox>
+                  <HBox spacing="30.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label text="Grupa">
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="TestGroupTextField" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </HBox>
+                  <HBox spacing="33.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="Pytanie:">
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </Label>
+                        <TextArea fx:id="QuestionTextArea" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                  </HBox>
+                  <VBox spacing="10.0" GridPane.rowIndex="2" GridPane.rowSpan="4">
+                     <children>
+                        <HBox spacing="47.0">
+                           <children>
+                              <Label text="Odp.A">
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="Answer1TextField" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="48.0">
+                           <children>
+                              <Label text="Odp.B">
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="Answer2TextField" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="47.0">
+                           <children>
+                              <Label text="Odp.C">
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="Answer3TextField" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="46.0">
+                           <children>
+                              <Label text="Odp.D">
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="Answer4TextField" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="15.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <HBox spacing="15.0" GridPane.rowIndex="6">
+                     <children>
+                        <RadioButton fx:id="Answer1RadioButton" mnemonicParsing="false" text="A">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="answertoggle" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="Answer2RadioButton" mnemonicParsing="false" text="B" toggleGroup="$answertoggle" />
+                        <RadioButton fx:id="Answer3RadioButton" mnemonicParsing="false" text="C" toggleGroup="$answertoggle" />
+                        <RadioButton fx:id="Answer4RadioButton" mnemonicParsing="false" text="D" toggleGroup="$answertoggle" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#AddQuestionButtonPressed" text="Dodaj Pytanie" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="80.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <HBox spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#CancelButtonPressed" text="Anuluj" />
+                        <Button mnemonicParsing="false" onAction="#AddTestButtonPressed" text="Dodaj Test" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="5.0" top="7.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="85.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab fx:id="tab4" text="Usun Test">
+         <content>
+            <StackPane>
+               <children>
+                  <GridPane fx:id="paneprevious1" alignment="CENTER">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#DeleteTestButtonPressed" text="Usun Test" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="150.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <ListView fx:id="testListView1" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="0" GridPane.rowSpan="3" />
+                        <HBox spacing="15.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label text="Grupa:" />
+                              <Label fx:id="groupLabel1" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="20.0" top="50.0" />
+                           </GridPane.margin>
+                        </HBox>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </GridPane>
+               </children>
+            </StackPane>
+         </content>
+      </Tab>
+      <Tab fx:id="tab3" text="Zestawienia">
+          <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="useravglabel" layoutX="89.0" layoutY="59.0" opacity="0.0" text="Srednia Uzytkownika" />
+                  <Label fx:id="userAverageScore" layoutX="240.0" layoutY="59.0" />
+                  <Label fx:id="group1label" layoutX="158.0" layoutY="99.0" opacity="0.0" text="group1" />
+                  <Label fx:id="group1scorelabel" layoutX="245.0" layoutY="99.0" />
+                  <Label fx:id="group2label" layoutX="158.0" layoutY="139.0" opacity="0.0" text="group2" />
+                  <Label fx:id="group2scorelabel" layoutX="245.0" layoutY="139.0" />
+                  <Label fx:id="group3label" layoutX="158.0" layoutY="181.0" opacity="0.0" text="group3" />
+                  <Label fx:id="group3scorelabel" layoutX="245.0" layoutY="181.0" />
+                  <Button layoutX="426.0" layoutY="266.0" mnemonicParsing="false" onAction="#ShowStatsButtonPressed" text="Pokaz Wyniki" />
+               </children></AnchorPane>
+          </content>
+      </Tab>
+      <Tab text="test">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tableView" layoutX="108.0" layoutY="57.0" prefHeight="204.0" prefWidth="309.0">
+                    <columns>
+                      <TableColumn fx:id="namecolumn" prefWidth="75.0" text="Nazwa" />
+                      <TableColumn fx:id="groupcolumn" prefWidth="75.0" text="Grupa" />
+                        <TableColumn fx:id="avgcolumn" prefWidth="75.0" text="Srednia" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>

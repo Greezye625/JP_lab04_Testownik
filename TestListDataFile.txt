@@ -1,0 +1,6 @@
+test1	0.0	test1_questionlist.txt	grupa1	Joey-40.0~Ross-60.0
+test2	0.0	test2_questionlist.txt	grupa1	Joey-40.0
+test3	0.0	test3_questionlist.txt	grupa2	Joey-40.0~Chandler-20.0
+test4	0.0	test4_questionlist.txt	grupa2	Joey-20.0~Ross-20.0
+test5	0.0	test5_questionlist.txt	grupa3	Joey-0.0~Ross-20.0
+test6	0.0	test6_questionlist.txt	grupa3	Joey-40.0~Chandler-40.0
